@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "SkoleOS Video Control",
+  "version": "1.2",
+  "description": "En universel, lynhurtig og flot videoafspiller til alle streamingtjenester.",
+  "icons": {
+    "16": "logo16.png",
+    "48": "logo48.png",
+    "128": "logo128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.mitcfu.dk/*",
+        "*://*.dr.dk/*",
+        "*://*.tv2.dk/*",
+        "*://*.tvmidtvest.dk/*",
+        "*://*.youtube.com/*"
+      ],
+      "all_frames": true,
+      "css": ["style.css"],
+      "js": ["content.js"]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+video::-webkit-media-controls { display: none !important; }
+.vjs-control-bar, .vjs-big-play-button, .vjs-loading-spinner { display: none !important; opacity: 0 !important; }
+.bmpui-ui-uicontainer, .bmpui-ui-controlbar { display: none !important; opacity: 0 !important; }
+.drtv-player-controls, [class*="controls-module"], .drtv-video-player__controls { display: none !important; opacity: 0 !important; pointer-events: none !important; }
+media-control-bar, media-settings-menu, media-time-range, .tvmv-player-button, [slot="centered-chrome"], media-loading-indicator { display: none !important; opacity: 0 !important; pointer-events: none !important; visibility: hidden !important; }
+media-controller > *:not(video):not(hls-video):not(#skoleos-player):not(#skoleos-resume-modal) { display: none !important; opacity: 0 !important; pointer-events: none !important; }
+.jw-controls, .jw-controlbar, .jw-button-container, .jw-timesegment, .jw-display-icon-container, .jw-title, .jw-overlays, .jw-settings-menu, .jw-tooltip { display: none !important; opacity: 0 !important; pointer-events: none !important; visibility: hidden !important; }
+.ytp-chrome-bottom, .ytp-chrome-top, .ytp-gradient-bottom, .ytp-gradient-top, .ytp-watermark { display: none !important; opacity: 0 !important; pointer-events: none !important; visibility: hidden !important; }
+.ytp-popup { z-index: 2147483647 !important; bottom: 95px !important; }
+
+#skoleos-player {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    width: 90%; height: 70px;
+    background: rgba(10, 15, 25, 0.45);
+    backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border-radius: 35px; display: flex !important; align-items: center; padding: 0 25px;
+    z-index: 2147483647 !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#skoleos-player.skoleos-hidden { opacity: 0 !important; transform: translateX(-50%) translateY(30px) scale(0.95); pointer-events: none !important; }
+
+.skoleos-btn {
+    background: none; border: none; color: rgba(255, 255, 255, 0.7);
+    font-size: 22px; cursor: pointer; margin: 0 10px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.skoleos-btn:hover { color: #00f2fe; transform: scale(1.25); text-shadow: 0 0 15px rgba(0, 242, 254, 0.8); }
+
+#skoleos-playbtn {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: white; border-radius: 50%; width: 50px; height: 50px; margin: 0 15px; font-size: 20px;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 5px 20px rgba(0, 242, 254, 0.4); border: 2px solid rgba(255,255,255,0.2);
+}
+#skoleos-playbtn:hover { transform: scale(1.15) rotate(5deg); box-shadow: 0 8px 25px rgba(0, 242, 254, 0.6); color: white; }
+
+.skoleos-volume-container { display: flex; align-items: center; margin-right: 15px; }
+#skoleos-vol-slider {
+    width: 0px; opacity: 0; transition: all 0.4s ease; cursor: pointer;
+    -webkit-appearance: none; background: rgba(255,255,255,0.1); height: 6px; border-radius: 5px; outline: none;
+}
+#skoleos-vol-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 14px; height: 14px; background: #00f2fe; border-radius: 50%; box-shadow: 0 0 10px #00f2fe;
+}
+.skoleos-volume-container:hover #skoleos-vol-slider { width: 90px; opacity: 1; margin-left: 12px; }
+
+#skoleos-progress-container { flex-grow: 1; margin: 0 25px; height: 30px; display: flex; align-items: center; cursor: pointer; }
+#skoleos-progress { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; position: relative; transition: height 0.2s; overflow: visible; }
+#skoleos-progress-container:hover #skoleos-progress { height: 10px; }
+#skoleos-progress-filled {
+    width: 0%; height: 100%; background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 10px; position: relative; pointer-events: none; box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+}
+#skoleos-progress-filled::after {
+    content: ''; position: absolute; right: -8px; top: 50%; transform: translateY(-50%) scale(0);
+    width: 16px; height: 16px; background: white; border-radius: 50%;
+    box-shadow: 0 0 15px #00f2fe; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#skoleos-progress-container:hover #skoleos-progress-filled::after { transform: translateY(-50%) scale(1); }
+
+.skoleos-time { color: rgba(255,255,255,0.85); font-family: 'Segoe UI', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; min-width: 45px; text-align: center; }
+
+#skoleos-settings-menu {
+    position: absolute; bottom: 95px; right: 30px;
+    background: rgba(10, 15, 25, 0.7); backdrop-filter: blur(25px);
+    border-radius: 15px; padding: 12px; display: none; flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(0, 242, 254, 0.2);
+}
+.skoleos-speed-btn {
+    background: none; border: none; color: white; padding: 10px 20px; cursor: pointer;
+    border-radius: 8px; font-family: sans-serif; font-size: 14px; text-align: left; transition: all 0.2s;
+}
+.skoleos-speed-btn:hover, .skoleos-speed-btn.active { background: rgba(0, 242, 254, 0.2); color: #00f2fe; }
+
+#skoleos-resume-modal {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: rgba(10, 15, 25, 0.6); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+    padding: 40px; border-radius: 25px; text-align: center; color: white;
+    z-index: 2147483647 !important; border: 1px solid rgba(0, 242, 254, 0.3); font-family: sans-serif;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(0, 242, 254, 0.1);
+}
+.skoleos-modal-btn {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); color: white; border: none;
+    padding: 12px 30px; margin: 20px 10px 0 10px; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 16px;
+    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.3); transition: all 0.2s;
+}
+.skoleos-modal-btn:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(0, 242, 254, 0.6); }
